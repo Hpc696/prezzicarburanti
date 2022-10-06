@@ -1,5 +1,5 @@
 import React from 'react'
-import {prezzi} from './App.js'
+import {createprezzi} from './App.js'
 export default function AppDropdown(){
     const options= [
         3 , 5, 10
@@ -10,7 +10,7 @@ export default function AppDropdown(){
     if(visible===5){
       console.log('click on first li item')
       //setIndex(5) 
-      const prezzisl= prezzi.slice(0, 5) 
+      const prezzisl= createprezzi(prezzi).slice(0, 5) 
     }
     if(visible===10){
       console.log('click on second li item')

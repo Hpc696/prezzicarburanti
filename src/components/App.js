@@ -5,6 +5,7 @@ import './App.css'
 import AppDropdown from './Dropdown'
 import {prezzisl} from './Dropdown';
 
+export const createprezzi= () => {
 const prezzi = [ 	
 	{ Data: 1, Benzina: 1 , Gasolio: 1 , Gpl: 1 },
 	{ Data: 2, Benzina: 1.5 , Gasolio: 1.5 , Gpl: 1.5 },
@@ -27,7 +28,7 @@ const prezzi = [
 	{ Data: 19, Benzina: 1.7 , Gasolio: 1.7 , Gpl: 1.7 },
 	{ Data: 20, Benzina: 1.7 , Gasolio: 1.7 , Gpl: 1.7 },
 ]	
-
+}
 
 export default function App() {
 	
