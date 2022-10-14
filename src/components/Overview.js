@@ -1,22 +1,28 @@
 import React from "react"
+import { Next } from "react-bootstrap/esm/PageItem"
+import { Prev } from "react-bootstrap/esm/PageItem"
 import './App.css'
 export default function AppOverview(props){
-    const [page, setPage] = React.useState(1)
-    function onPage(o){
-        setPage(o)
-        if(props.onSelect){props.onSelect(o)} //comunic. esterno
-      }
-    return( <>
+    let pages= props.pages;
+    let pagesize= props.pagesize;
+    let currentpage= props.currentpage;
+    let prevclass= currentpage===1 ? 'disabled' : '' ;
+    function prevPage(){
+        if(currentpage>1)
+        props.onChange(-1)
+    }
+
+    
+    
+    return(
         <nav aria-label="Page navigation example" className="d-flex-inline">
             <ul className="pagination justify-content-end">
-                <li className="page-item"><a className="page-link" href="#">Previous</a></li>
-                <li className="page-item"><a className="page-link" href="#">1</a></li>
-                <li className="page-item"><a className="page-link" href="#">2</a></li>
-                <li className="page-item"><a className="page-link" href="#">3</a></li>
-                <li className="page-item"><a className="page-link" href="#">Next</a></li>
+                <li onClick={() => prevPage()} className={prevclass + " page-item"}><a className="page-link" /*href="#"*/>Previous</a></li>
+                <li className="page-item">{currentpage}</li>
+                <li onClick={() => props.onChange(1)} className={( currentpage===pages ? 'disabled ' : '' ) + "page-item"}><a className="page-link" /*href="#"*/>Next</a></li>
             </ul>
         </nav>
-    </>
+    
     )
 }
 

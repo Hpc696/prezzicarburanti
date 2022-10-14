@@ -7,7 +7,6 @@ export default function AppDropdown(props){
     ]
   
     const [option, setOption] = React.useState(options[0])
-   
     function onOption(o){
       setOption(o)
       if(props.onSelect){props.onSelect(o)} //comunic. esterno
@@ -16,7 +15,7 @@ export default function AppDropdown(props){
         
         <div className="dropdown d-flex-inline">
         <p className='d-inline'>Mostra </p>
-        <a className="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        <a className="btn btn-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
           {option}
         </a>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">

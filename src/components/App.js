@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import React from 'react'
+import { Next } from "react-bootstrap/esm/PageItem"
+import { Prev } from "react-bootstrap/esm/PageItem"
 import './App.css'
 import AppDropdown from './Dropdown.js'
 import AppOverview from './Overview'
@@ -44,13 +46,25 @@ export default function App() {
 				console.log(o)
 				} 
 	}
+	/*const NPag = (props, o) => {
+		props.pages= Math.floor(prezzi/o)
+	}
+	function PrevPage(props){
+        setCurrentPage(currentpage - 1)
+		
+    }
+    function NextPage(props){
+        props.currentpage=setCurrentPage(currentpage + 1)
+	}
+	
+*/
   return (
     <>
     <section className="ftco-section">
 		<div className="container">
 			<div className="row justify-content-center">
 				<div className="col-md-6 text-center mb-5">
-					<h2 className="heading-section">Prezzi carburante</h2>
+					<h2 className="heading-section text-uppercase font-weight-bold">Prezzi carburante</h2>
 				</div>
 			</div>
 			<div className="row">
@@ -81,7 +95,7 @@ export default function App() {
 					    </tbody>
 					  </table>
 					<AppDropdown onSelect={OnSelectDD}/>
-					<AppOverview />
+					<AppOverview onChange={x => console.log(x)} pages={10} currentpage={1} pagesize={10} />
 					</div>
 				</div>
 			</div>
@@ -91,8 +105,3 @@ export default function App() {
 </>
   );
 }
-		  /*<div className='d-flex justify-content-end'><select>
-              <option value='prime2'>Mostra le prime 2 righe</option>
-              <option value='prime4'>Mostra le prime 4 righe</option>
-              <option value='prime6'>Mostra le prime 6 righe</option>
-            </select> </div>*/
