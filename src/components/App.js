@@ -46,18 +46,11 @@ export default function App() {
 				console.log(o)
 				} 
 	}
-	/*const NPag = (props, o) => {
-		props.pages= Math.floor(prezzi/o)
-	}
-	function PrevPage(props){
-        setCurrentPage(currentpage - 1)
-		
-    }
-    function NextPage(props){
-        props.currentpage=setCurrentPage(currentpage + 1)
-	}
+	/*const onChange = () => {
+
+	}*/
 	
-*/
+//inserire use state di currentpage sicuro , pagesize usestate dipendente da dropdown e invece numero totali di pagine divisione prezzi/o ?
   return (
     <>
     <section className="ftco-section">
@@ -95,7 +88,7 @@ export default function App() {
 					    </tbody>
 					  </table>
 					<AppDropdown onSelect={OnSelectDD}/>
-					<AppOverview onChange={x => console.log(x)} pages={10} currentpage={1} pagesize={10} />
+					<AppOverview onChange={}/*{x => console.log(x)} pages={10} currentpage={1} pagesize={10}     passo i dati d/a overview*/ />
 					</div>
 				</div>
 			</div>
