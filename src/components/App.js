@@ -42,7 +42,7 @@ export default function App() {
 			} else if(o===3){
 				setStart(3)
 				console.log(o)
-				}
+				} 
 	}
   return (
     <>
@@ -68,13 +68,14 @@ export default function App() {
 					    </thead>
 					    <tbody >
 							 {prezzi.slice(0 , start).map((p , index) =>  { 
-								return(<>
+								return(
 								 <tr key={index}>
 								 <th scope="row" className="scope" >{p.Data}</th>
 								 <td>{ p.Benzina }</td>
 								 <td>{ p.Gasolio }</td>
 								 <td>{ p.Gpl }</td>
-								 </tr></> )
+								 </tr>
+								 )
 							})}
 						
 					    </tbody>
