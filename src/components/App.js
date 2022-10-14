@@ -2,11 +2,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import React from 'react'
 import './App.css'
-import AppDropdown from './Dropdown'
-import {prezzisl} from './Dropdown';
+import AppDropdown from './Dropdown.js'
+import AppOverview from './Overview'
 
-export const createprezzi= () => {
-const prezzi = [ 	
+
+
+export const prezzi = [ 	
 	{ Data: 1, Benzina: 1 , Gasolio: 1 , Gpl: 1 },
 	{ Data: 2, Benzina: 1.5 , Gasolio: 1.5 , Gpl: 1.5 },
 	{ Data: 3, Benzina: 2 , Gasolio: 2 , Gpl: 2 },
@@ -28,10 +29,21 @@ const prezzi = [
 	{ Data: 19, Benzina: 1.7 , Gasolio: 1.7 , Gpl: 1.7 },
 	{ Data: 20, Benzina: 1.7 , Gasolio: 1.7 , Gpl: 1.7 },
 ]	
-}
 
 export default function App() {
-	
+	const[start, setStart]= React.useState(3)
+	const OnSelectDD = (o) => { 
+		if(o===5){
+			setStart(5)
+			console.log(o)
+		} else if(o===10){
+			setStart(10)
+			console.log(o)
+			} else if(o===3){
+				setStart(3)
+				console.log(o)
+				}
+	}
   return (
     <>
     <section className="ftco-section">
@@ -54,23 +66,21 @@ export default function App() {
 					    
 					      </tr>
 					    </thead>
-					    <tbody>
-							{prezzisl.map((p , index) =>  { 
-								return(
+					    <tbody >
+							 {prezzi.slice(0 , start).map((p , index) =>  { 
+								return(<>
 								 <tr key={index}>
 								 <th scope="row" className="scope" >{p.Data}</th>
-								 <td>{p.Benzina}</td>
-								 <td>{p.Gasolio}</td>
-								 <td>{p.Gpl}</td>
-								 </tr>)
+								 <td>{ p.Benzina }</td>
+								 <td>{ p.Gasolio }</td>
+								 <td>{ p.Gpl }</td>
+								 </tr></> )
 							})}
-					     
-					        
-					        
-					     
+						
 					    </tbody>
 					  </table>
-					<AppDropdown/>
+					<AppDropdown onSelect={OnSelectDD}/>
+					<AppOverview />
 					</div>
 				</div>
 			</div>
@@ -80,7 +90,7 @@ export default function App() {
 </>
   );
 }
-  /*<div className='d-flex justify-content-end'><select>
+		  /*<div className='d-flex justify-content-end'><select>
               <option value='prime2'>Mostra le prime 2 righe</option>
               <option value='prime4'>Mostra le prime 4 righe</option>
               <option value='prime6'>Mostra le prime 6 righe</option>

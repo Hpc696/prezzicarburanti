@@ -129,3 +129,7 @@ h1, h2, h3, h4, h5,
 	}
 }
 */}
+.pagination {
+	--bs-pagination-color: #f8f9fd;
+    --bs-pagination-bg: var(--bs-link-color);
+}

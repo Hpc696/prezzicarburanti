@@ -1,39 +1,32 @@
 import React from 'react'
-import {createprezzi} from './App.js'
-export default function AppDropdown(){
-    const options= [
+
+export default function AppDropdown(props){
+ 
+  const options= [
         3 , 5, 10
     ]
-    const defaultoption = [3]
-    const [visible, setVisible] = React.useState(0)
-    
-    if(visible===5){
-      console.log('click on first li item')
-      //setIndex(5) 
-      const prezzisl= createprezzi(prezzi).slice(0, 5) 
-    }
-    if(visible===10){
-      console.log('click on second li item')
-      //setIndex(10)  
-      const prezzisl= prezzi.slice(0, 10) 
+  
+    const [option, setOption] = React.useState(options[0])
+   
+    function onOption(o){
+      setOption(o)
+      if(props.onSelect){props.onSelect(o)} //comunic. esterno
     }
     return( <>
         
-        <div className="dropdown">
+        <div className="dropdown d-flex-inline">
         <p className='d-inline'>Mostra </p>
         <a className="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          {defaultoption}
+          {option}
         </a>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li onClick={() => setVisible(5)}><a className="dropdown-item" href="#">5</a></li>
-          <li onClick={() => setVisible(10)}><a className="dropdown-item" href="#">10</a></li>
+          {options.map(o => <li key={o} onClick={() => onOption(o)}><a className="dropdown-item">{o}</a></li>)}
+          
           
         </ul>
-        <p className='d-inline'> righe per pagina</p>
+        <p className='d-inline'> </p>
       </div>
       
     </>
     )
-
-
 }
