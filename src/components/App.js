@@ -1,14 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import React from 'react'
-import { Next } from "react-bootstrap/esm/PageItem"
-import { Prev } from "react-bootstrap/esm/PageItem"
 import './App.css'
 import AppDropdown from './Dropdown.js'
 import AppOverview from './Overview'
 
 
-
+{/*
 export const prezzi = [ 	
 	{ Data: 1, Benzina: 1 , Gasolio: 1 , Gpl: 1 },
 	{ Data: 2, Benzina: 1.5 , Gasolio: 1.5 , Gpl: 1.5 },
@@ -30,29 +28,37 @@ export const prezzi = [
 	{ Data: 18, Benzina: 1.7 , Gasolio: 1.7 , Gpl: 1.7 },
 	{ Data: 19, Benzina: 1.7 , Gasolio: 1.7 , Gpl: 1.7 },
 	{ Data: 20, Benzina: 1.7 , Gasolio: 1.7 , Gpl: 1.7 },
-]	
+]	*/}
 
 export default function App() {
-	const[start, setStart]= React.useState(3)
-	const OnSelectDD = (o) => { 
-		if(o===5){
-			setStart(5)
-			console.log(o)
-		} else if(o===10){
-			setStart(10)
-			console.log(o)
-			} else if(o===3){
-				setStart(3)
-				console.log(o)
-				} 
+	const [prezzi, setPrezzi]=React.useState([])
+	async function initPrezzi() {
+		await fetch(`https://dgsaie.mise.gov.it/open_data_export.php?export-id=1&export-type=csv`)
+			.then(response => response.json())
+			.then(response => {
+				setPrezzi(response.result);
+				console.log(response.result);
+				console.log(prezzi)
+			})
+			.catch(err => console.error(err));
 	}
-	/*const onChange = () => {
+	const[pagesize, setpagesize]= React.useState(3)
+	const OnSelectDD = (o) => { 
+		let currentindex= (currentpage-1)*pagesize
+		setpagesize(o)
+		setCurrentpage(Math.floor((currentindex/o)+1))
+	}
+	const[currentpage, setCurrentpage]= React.useState(1)
+	const OnSelectOV = (x) => {
+		if(x===-1){
+			setCurrentpage(currentpage-1)
+		} else {
+			setCurrentpage(currentpage+1)
+		}
+	}
 
-	}*/
-	
-//inserire use state di currentpage sicuro , pagesize usestate dipendente da dropdown e invece numero totali di pagine divisione prezzi/o ?
+//inserire use state di currentpage (fatto) , pagesize usestate dipendente da dropdown (pagesize) , invece numero totali di pagine = divisione (n.elementi di prezzi/pagesize)
   return (
-    <>
     <section className="ftco-section">
 		<div className="container">
 			<div className="row justify-content-center">
@@ -74,7 +80,7 @@ export default function App() {
 					      </tr>
 					    </thead>
 					    <tbody >
-							 {prezzi.slice(0 , start).map((p , index) =>  { 
+							 {prezzi.slice((currentpage-1)*pagesize , (currentpage*pagesize)).map((p , index) =>  { 
 								return(
 								 <tr key={index}>
 								 <th scope="row" className="scope" >{p.Data}</th>
@@ -87,14 +93,12 @@ export default function App() {
 						
 					    </tbody>
 					  </table>
-					<AppDropdown onSelect={OnSelectDD}/>
-					<AppOverview onChange={}/*{x => console.log(x)} pages={10} currentpage={1} pagesize={10}     passo i dati d/a overview*/ />
+					<AppDropdown onSelect={OnSelectDD} />
+					<AppOverview onChange={OnSelectOV} pages={prezzi.length/pagesize} currentpage={currentpage} pagesize={pagesize}/>    {/* passo i dati d/a overview*/}
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
-</>
   );
 }
