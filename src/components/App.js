@@ -42,9 +42,11 @@ export default function App() {
 				console.error(err)
 		}
 	}
+
 	React.useEffect(() => {
 		initPrezzi() ;
 	}, [])
+	
 	const[pagesize, setpagesize]= React.useState(3)
 	const OnSelectDD = (o) => { 
 		let currentindex= (currentpage-1)*pagesize
