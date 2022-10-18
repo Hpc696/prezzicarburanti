@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import React from 'react'
+import React, { useEffect } from 'react'
 import './App.css'
 import AppDropdown from './Dropdown.js'
 import AppOverview from './Overview'
@@ -33,15 +33,18 @@ export const prezzi = [
 export default function App() {
 	const [prezzi, setPrezzi]=React.useState([])
 	async function initPrezzi() {
-		await fetch(`https://dgsaie.mise.gov.it/open_data_export.php?export-id=1&export-type=csv`)
-			.then(response => response.json())
-			.then(response => {
-				setPrezzi(response.result);
-				console.log(response.result);
-				console.log(prezzi)
-			})
-			.catch(err => console.error(err));
+		try{
+			const r = await fetch('http://localhost:4000/csv');
+			const j = await r.json();
+			console.log(j)
+			setPrezzi(j)
+		} catch (err){
+				console.error(err)
+		}
 	}
+	React.useEffect(() => {
+		initPrezzi() ;
+	}, [])
 	const[pagesize, setpagesize]= React.useState(3)
 	const OnSelectDD = (o) => { 
 		let currentindex= (currentpage-1)*pagesize
