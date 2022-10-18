@@ -76,9 +76,9 @@ export default function App() {
 					    <thead className="thead-primary bg-primary">
 					      <tr className='text-white'>
 					        <th>Data Rilevazione</th>
-					        <th>€ Benzina/l </th>
-					        <th>€ Gasolio/l </th>
-					        <th>€ Gpl/l </th>
+					        <th> Benzina </th>
+					        <th> Gasolio </th>
+					        <th> Gpl </th>
 					    
 					      </tr>
 					    </thead>

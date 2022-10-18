@@ -14,7 +14,7 @@ export default function AppDropdown(props){
     return( <>
         
         <div className="dropdown d-flex-inline">
-        <p className='d-inline'>Mostra </p>
+        <p className='d-inline user-select-none'>Mostra </p>
         <a className="btn btn-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
           {option}
         </a>

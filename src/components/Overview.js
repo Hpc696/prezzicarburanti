@@ -19,9 +19,9 @@ export default function AppOverview(props){
     return(
         <nav aria-label="Page navigation example" className="d-flex-inline">
             <ul className="pagination justify-content-end">
-                <li onClick={prevPage} className={prevclass + " page-item"}><a className="page-link" /*href="#"*/>Previous</a></li>
-                <li className="page-item">{currentpage}</li>
-                <li onClick={nextPage} className={( currentpage>=pages ? 'disabled ' : '' ) + "page-item"}><a className="page-link" /*href="#"*/>Next</a></li>
+                <li onClick={prevPage} className={prevclass + " page-item"}><a className=" user-select-none page-link" /*href="#"*/>Previous</a></li>
+                <li className="p-2 page-item user-select-none">{currentpage}</li>
+                <li onClick={nextPage} className={( currentpage>=pages ? 'disabled ' : '' ) + "page-item"}><a className=" user-select-none page-link" /*href="#"*/>Next</a></li>
             </ul> {/*evitare click anche su bottone next quando non ho piu pagine dopo da vedere*/}
         </nav>
     
