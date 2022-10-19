@@ -36,7 +36,7 @@ export default function App() {
 		try{
 			const r = await fetch('http://localhost:4000/csv');
 			const j = await r.json();
-			console.log(j)
+			//console.log(j)
 			setPrezzi(j)
 		} catch (err){
 				console.error(err)
